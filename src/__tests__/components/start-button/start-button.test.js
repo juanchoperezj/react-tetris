@@ -9,6 +9,6 @@ it("renders StartButton without crashing", () => {
 });
 
 it("renders StartButton and match snapshot", () => {
-  const cell = render(<StartButton callback={() => {}} />);
-  expect(cell).toMatchSnapshot();
+  const tree = render(<StartButton callback={() => {}} />);
+  expect(tree).toMatchSnapshot();
 });

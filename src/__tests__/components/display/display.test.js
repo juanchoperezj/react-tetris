@@ -9,11 +9,11 @@ it("renders Display without crashing", () => {
 });
 
 it("renders Display and match snapshot", () => {
-  const cell = render(<Display text="Game Over" />);
-  expect(cell).toMatchSnapshot();
+  const tree = render(<Display text="Game Over" />);
+  expect(tree).toMatchSnapshot();
 });
 
 it("renders Display with Game Over", () => {
-  const cell = render(<Display gameOver={true} text="Game Over" />);
-  expect(cell).toMatchSnapshot();
+  const tree = render(<Display gameOver={true} text="Game Over" />);
+  expect(tree).toMatchSnapshot();
 });

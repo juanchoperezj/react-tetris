@@ -12,6 +12,6 @@ it("renders Stage without crashing", () => {
 });
 
 it("renders Stage and match snapshot", () => {
-  const cell = render(<Stage stage={stage} />);
-  expect(cell).toMatchSnapshot();
+  const tree = render(<Stage stage={stage} />);
+  expect(tree).toMatchSnapshot();
 });

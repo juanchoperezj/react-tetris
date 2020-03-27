@@ -9,6 +9,6 @@ it("renders Tetris without crashing", () => {
 });
 
 it("renders Tetris and match snapshot", () => {
-  const cell = render(<Tetris />);
-  expect(cell).toMatchSnapshot();
+  const tetris = render(<Tetris />);
+  expect(tetris).toMatchSnapshot();
 });
