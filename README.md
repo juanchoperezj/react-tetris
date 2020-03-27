@@ -7,7 +7,7 @@ The course doesn't include Jest testing and other performance improvements.
 ![](tetris-game.gif)
 
 - [x] Readme
-- [ ] Jest testing
+- [x] Jest testing
 - [ ] Performance improvements
 - [ ] Pause and resume the game
 - [ ] Save the scores of different players
