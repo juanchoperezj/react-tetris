@@ -21,7 +21,8 @@ import { useGameStatus } from "../../hooks/useGameStatus";
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(1000);
   const [gameOver, setGameOver] = useState(false);
-
+  const [paused, setPaused] = useState(true);
+  const [gameWasStarted, setGameStarted] = useState(false);
   const [
     player,
     updatePlayerPos,
@@ -41,6 +42,7 @@ const Tetris = () => {
   };
 
   const startGame = () => {
+    setPaused(false);
     setStage(createStage());
     resetPlayer();
     setGameOver(false);
@@ -48,10 +50,10 @@ const Tetris = () => {
     setScore(0);
     setLevel(0);
     setRows(0);
+    setGameStarted(true);
   };
 
   const drop = () => {
-    console.log({ rows });
     if (rows > (level + 1) * 10) {
       setLevel(prevLevel => prevLevel + 1);
       setDropTime(1000 / level + 1 + 300);
@@ -95,11 +97,24 @@ const Tetris = () => {
           return movePlayer(1);
         case 40:
           return dropPlayer();
+        default:
+          return null;
       }
     }
   };
 
-  useInterval(drop, dropTime);
+  const pauseGame = () => setPaused(!paused);
+
+  useInterval(drop, dropTime, paused);
+
+  const renderPauseButton = () => {
+    const btnLabel = !paused && gameWasStarted ? "Pause" : "Resume";
+    if (paused && !gameWasStarted) {
+      // show no button
+      return null;
+    }
+    return <StartButton callback={pauseGame} text={btnLabel} />;
+  };
 
   return (
     <StyledTetrisWrapper
@@ -122,6 +137,7 @@ const Tetris = () => {
               <Display text={`Rows ${rows}`} />
               <Display text={`Level ${level}`} />
               <StartButton callback={startGame} text="Start Game" />
+              {renderPauseButton()}
             </div>
           )}
         </aside>
